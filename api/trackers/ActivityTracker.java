@@ -39,6 +39,12 @@ public class ActivityTracker implements ExperienceListener, InventoryListener {
     mapActionEventToActivity(new ActionEvent(actionType.opcode(), id, itemId), activity);
   }
 
+  public void mapActionEventToActivity(
+      ActionType actionType, int id, int itemId, boolean npcIdInsteadOfIndex, Activity activity) {
+    mapActionEventToActivity(
+        new ActionEvent(actionType.opcode(), id, itemId, npcIdInsteadOfIndex), activity);
+  }
+
   @Subscribe(priority = Integer.MAX_VALUE - 1)
   private void onDoActionEvent(DoActionEvent event) {
     ActionEvent actionEvent = new ActionEvent(event.opcode(), event.id(), event.itemId());
