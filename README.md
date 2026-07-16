@@ -7,6 +7,20 @@ plugin that uses it.
 From the plugin root, execute the following command to add utils as a
 submodule.
 
+For public GitHub (this is the one you'll want)
+
+```bash
+git submodule add https://github.com/schemer-plugins/utils src/main/java/be/moens/schemer/utils
+```
+
+For TwiLite GitHub
+
+```bash
+git submodule add https://github.com/twilite-plugins/utils src/main/java/be/moens/schemer/utils
+```
+
+For personal git server
+
 ```bash
 git submodule add https://git.loki.moens.be/schemer/utils src/main/java/be/moens/schemer/utils
 ```
