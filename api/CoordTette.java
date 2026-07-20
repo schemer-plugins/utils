@@ -1,8 +1,10 @@
 package be.moens.schemer.utils.api;
 
 import dev.twilite.game.common.Coord;
+import dev.twilite.game.common.Rect;
 import dev.twilite.game.facade.Avatar;
 import dev.twilite.game.navigation.Navigation;
+import java.util.Collection;
 
 public class CoordTette {
   public static Coord getNearest(Coord... coords) {
@@ -34,6 +36,29 @@ public class CoordTette {
   }
 
   public static boolean isAtOrMovingTo(Coord coord) {
-    return Avatar.coord().equals(coord) || Navigation.mapFlag(coord);
+    return coord != null && (Avatar.coord().equals(coord) || Navigation.mapFlag(coord));
+  }
+
+  public static boolean isAtOrMovingTo(Collection<Coord> coords) {
+    if (coords == null || coords.isEmpty()) {
+      return false;
+    }
+
+    for (Coord coord : coords) {
+      if (isAtOrMovingTo(coord)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public static boolean isAtOrMovingTo(Rect area) {
+    if (area == null) {
+      return false;
+    }
+
+    return area.contains(Avatar.coord())
+        || area.contains(Navigation.mapFlag().orElse(new Coord(0, 0, 0)));
   }
 }
